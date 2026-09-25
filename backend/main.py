@@ -2,36 +2,46 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
+import json
+import os
 
-app = FastAPI(title="Skill Transfer Engine API")
+# 1. IMPORT CHANDAN'S LOGIC
+from engine import analyze_skill_gap
 
-# Allow frontend to call the API without getting CORS errors
+app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins (e.g., http://localhost:5173 or 3000)
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-class ProfileRequest(BaseModel):
+class UserInput(BaseModel):
     current_role: str
+    target_role: str
     skills: List[str]
 
-@app.get("/")
-def read_root():
-    return {"status": "Backend API is online"}
-
-# The endpoint Bhavya's frontend will call
 @app.post("/api/analyze")
-def analyze_skills(data: ProfileRequest):
+def analyze(data: UserInput):
+    # RUN CHANDAN'S ENGINE
+    analysis = analyze_skill_gap(data.skills, data.target_role)
+
+    # LOAD INDIRA'S ROADMAP DATA
+    roadmap_path = os.path.join("..", "data", "career_graphs.json")
+    roadmap_steps = []
+    
+    if os.path.exists(roadmap_path):
+        with open(roadmap_path, "r") as f:
+            all_roadmaps = json.load(f)
+            key = f"{data.current_role}_to_{data.target_role}"
+            roadmap_steps = all_roadmaps.get(key, [])
+
+    # RETURN THE COMBINED RESULT TO BHAVYA'S FRONTEND
     return {
         "current_role": data.current_role,
-        "recommended_paths": [
-            {"title": "Product Management", "overlap": "75%"},
-            {"title": "Business Development", "overlap": "85%"},
-            {"title": "Customer Success", "overlap": "90%"}
-        ],
-        "transferable_skills": [s for s in data.skills if s in ["Communication", "Negotiation", "Customer Handling"]],
-        "skill_gaps": ["Market Research", "Product Analytics", "Roadmapping"]
+        "target_role": data.target_role,
+        "analysis": analysis,         # Chandan's work
+        "roadmap": roadmap_steps       # Indira's work
     }
