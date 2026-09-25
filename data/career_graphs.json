@@ -1,28 +1,91 @@
 {
-  "Sales Executive_to_Product Management": [
-    {
-      "step": 1,
-      "title": "Learn",
-      "skill": "Market Research",
-      "action": "Turn daily customer conversations into structured user interview insights."
-    },
-    {
-      "step": 2,
-      "title": "Practice",
-      "skill": "Product Analytics",
-      "action": "Analyze churn metrics and usage patterns using simple dashboard tools."
-    },
-    {
-      "step": 3,
-      "title": "Build",
-      "skill": "PRD Creation",
-      "action": "Write a 1-page Product Requirement Document solving a common customer objection."
-    },
-    {
-      "step": 4,
-      "title": "Apply",
-      "skill": "APM Roles",
-      "action": "Target Associate Product Manager roles that prioritize customer empathy."
-    }
-  ]
+  "careers": {
+    "Data Analyst": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Statistics",
+      "Data Analysis",
+      "Data Visualization"
+    ],
+
+    "Business Analyst": [
+      "SQL",
+      "Excel",
+      "Communication",
+      "Data Analysis",
+      "Problem Solving",
+      "Presentation"
+    ],
+
+    "Product Manager": [
+      "Communication",
+      "Product Strategy",
+      "Product Analytics",
+      "User Research",
+      "Agile",
+      "Stakeholder Management"
+    ],
+
+    "Product Analyst": [
+      "SQL",
+      "Data Analysis",
+      "Product Analytics",
+      "Statistics",
+      "Data Visualization"
+    ],
+
+    "Customer Success Manager": [
+      "Communication",
+      "Customer Handling",
+      "CRM",
+      "Presentation",
+      "Problem Solving",
+      "Stakeholder Management"
+    ],
+
+    "Business Development Manager": [
+      "Communication",
+      "Negotiation",
+      "Customer Handling",
+      "CRM",
+      "Presentation",
+      "Market Research"
+    ],
+
+    "Project Manager": [
+      "Communication",
+      "Project Management",
+      "Leadership",
+      "Agile",
+      "Problem Solving",
+      "Stakeholder Management"
+    ],
+
+    "HR Manager": [
+      "Communication",
+      "Leadership",
+      "Negotiation",
+      "Presentation",
+      "Problem Solving",
+      "Stakeholder Management"
+    ],
+
+    "Data Engineer": [
+      "Python",
+      "SQL",
+      "Git",
+      "Problem Solving",
+      "Data Analysis"
+    ],
+
+    "ML Engineer": [
+      "Python",
+      "Machine Learning",
+      "Statistics",
+      "Git",
+      "Problem Solving",
+      "Data Analysis"
+    ]
+  }
 }
