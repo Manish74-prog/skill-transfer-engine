@@ -1,32 +1,40 @@
+# Chandan's Skill Matching & Relationship Logic
 
-# CHANDAN'S LOGIC: Skill graph & gap matching engine
-
-SKILL_GRAPH = {
-    "Communication": ["Sales", "Customer Success", "Product Management"],
-    "Customer Handling": ["Customer Success", "Product Management"],
-    "Negotiation": ["Sales", "Business Development"]
+CAREER_PROFILES = {
+    "Product Manager": {
+        "required_skills": ["Communication", "Negotiation", "Customer Handling", "Product Strategy", "Product Analytics", "Agile"],
+        "alternatives": ["Customer Success Manager", "Business Development Manager", "Product Operations"]
+    },
+    "Customer Success Manager": {
+        "required_skills": ["Communication", "Customer Handling", "CRM", "Empathy", "Account Management"],
+        "alternatives": ["Account Manager", "Sales Executive", "Support Lead"]
+    },
+    "Business Analyst": {
+        "required_skills": ["Communication", "Data Analysis", "SQL", "Requirements Gathering", "Excel"],
+        "alternatives": ["Product Manager", "Operations Analyst", "Project Manager"]
+    }
 }
 
-CAREER_REQUIREMENTS = {
-    "Product Management": ["Communication", "Customer Handling", "Product Strategy", "Data Analytics"],
-    "Business Development": ["Communication", "Negotiation", "Lead Generation"]
-}
-
-def analyze_skill_gap(current_skills: list, target_role: str):
-    needed = CAREER_REQUIREMENTS.get(target_role, [])
+def analyze_transition(current_role: str, user_skills: list, target_role: str):
+    # Retrieve profile or provide fallback
+    profile = CAREER_PROFILES.get(target_role, {
+        "required_skills": ["Communication", "Problem Solving", "Domain Expertise"],
+        "alternatives": ["Associate Consultant", "General Management"]
+    })
     
-    # Skills the user already has that match the target role
-    transferable = [s for s in current_skills if s in needed]
+    target_requirements = profile["required_skills"]
     
-    # Skills the user still needs to learn
-    gaps = [s for s in needed if s not in current_skills]
+    # 1. Existing & Transferable: skills user has that match or help the target role
+    transferable = [s for s in user_skills if s in target_requirements]
     
-    # Calculate match percentage
-    overlap_pct = int((len(transferable) / max(len(needed), 1)) * 100)
+    # 2. Skill Gaps: what the user is missing
+    gaps = [s for s in target_requirements if s not in user_skills]
+    
+    # 3. Alternatives
+    alternatives = profile["alternatives"]
     
     return {
-        "target_role": target_role,
-        "match_percentage": f"{overlap_pct}%",
-        "transferable_skills": transferable,
-        "skill_gaps": gaps
+        "transferable": transferable,
+        "gaps": gaps,
+        "alternatives": alternatives
     }
