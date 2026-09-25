@@ -1,0 +1,91 @@
+{
+  "careers": {
+    "Data Analyst": [
+      "Python",
+      "SQL",
+      "Excel",
+      "Statistics",
+      "Data Analysis",
+      "Data Visualization"
+    ],
+
+    "Business Analyst": [
+      "SQL",
+      "Excel",
+      "Communication",
+      "Data Analysis",
+      "Problem Solving",
+      "Presentation"
+    ],
+
+    "Product Manager": [
+      "Communication",
+      "Product Strategy",
+      "Product Analytics",
+      "User Research",
+      "Agile",
+      "Stakeholder Management"
+    ],
+
+    "Product Analyst": [
+      "SQL",
+      "Data Analysis",
+      "Product Analytics",
+      "Statistics",
+      "Data Visualization"
+    ],
+
+    "Customer Success Manager": [
+      "Communication",
+      "Customer Handling",
+      "CRM",
+      "Presentation",
+      "Problem Solving",
+      "Stakeholder Management"
+    ],
+
+    "Business Development Manager": [
+      "Communication",
+      "Negotiation",
+      "Customer Handling",
+      "CRM",
+      "Presentation",
+      "Market Research"
+    ],
+
+    "Project Manager": [
+      "Communication",
+      "Project Management",
+      "Leadership",
+      "Agile",
+      "Problem Solving",
+      "Stakeholder Management"
+    ],
+
+    "HR Manager": [
+      "Communication",
+      "Leadership",
+      "Negotiation",
+      "Presentation",
+      "Problem Solving",
+      "Stakeholder Management"
+    ],
+
+    "Data Engineer": [
+      "Python",
+      "SQL",
+      "Git",
+      "Problem Solving",
+      "Data Analysis"
+    ],
+
+    "ML Engineer": [
+      "Python",
+      "Machine Learning",
+      "Statistics",
+      "Git",
+      "Problem Solving",
+      "Data Analysis"
+    ]
+  }
+}
