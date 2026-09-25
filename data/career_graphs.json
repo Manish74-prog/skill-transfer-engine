@@ -1,0 +1,28 @@
+{
+  "Sales Executive_to_Product Management": [
+    {
+      "step": 1,
+      "title": "Learn",
+      "skill": "Market Research",
+      "action": "Turn daily customer conversations into structured user interview insights."
+    },
+    {
+      "step": 2,
+      "title": "Practice",
+      "skill": "Product Analytics",
+      "action": "Analyze churn metrics and usage patterns using simple dashboard tools."
+    },
+    {
+      "step": 3,
+      "title": "Build",
+      "skill": "PRD Creation",
+      "action": "Write a 1-page Product Requirement Document solving a common customer objection."
+    },
+    {
+      "step": 4,
+      "title": "Apply",
+      "skill": "APM Roles",
+      "action": "Target Associate Product Manager roles that prioritize customer empathy."
+    }
+  ]
+}
