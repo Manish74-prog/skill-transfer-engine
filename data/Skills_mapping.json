@@ -1,91 +1,145 @@
 {
-  "careers": {
-    "Data Analyst": [
-      "Python",
-      "SQL",
-      "Excel",
-      "Statistics",
-      "Data Analysis",
-      "Data Visualization"
+  "skill_to_careers": {
+    "Python": [
+      "Data Analyst",
+      "Data Engineer",
+      "ML Engineer"
     ],
 
-    "Business Analyst": [
-      "SQL",
-      "Excel",
-      "Communication",
-      "Data Analysis",
-      "Problem Solving",
-      "Presentation"
+    "SQL": [
+      "Data Analyst",
+      "Business Analyst",
+      "Product Analyst",
+      "Data Engineer"
     ],
 
-    "Product Manager": [
-      "Communication",
-      "Product Strategy",
-      "Product Analytics",
-      "User Research",
-      "Agile",
-      "Stakeholder Management"
+    "Excel": [
+      "Data Analyst",
+      "Business Analyst"
     ],
 
-    "Product Analyst": [
-      "SQL",
-      "Data Analysis",
-      "Product Analytics",
-      "Statistics",
-      "Data Visualization"
+    "Communication": [
+      "Business Analyst",
+      "Product Manager",
+      "Customer Success Manager",
+      "Business Development Manager",
+      "Project Manager",
+      "HR Manager"
     ],
 
-    "Customer Success Manager": [
-      "Communication",
-      "Customer Handling",
-      "CRM",
-      "Presentation",
-      "Problem Solving",
-      "Stakeholder Management"
+    "Negotiation": [
+      "Business Development Manager",
+      "HR Manager",
+      "Product Manager"
     ],
 
-    "Business Development Manager": [
-      "Communication",
-      "Negotiation",
-      "Customer Handling",
-      "CRM",
-      "Presentation",
-      "Market Research"
+    "Customer Handling": [
+      "Customer Success Manager",
+      "Business Development Manager",
+      "Product Manager"
     ],
 
-    "Project Manager": [
-      "Communication",
-      "Project Management",
-      "Leadership",
-      "Agile",
-      "Problem Solving",
-      "Stakeholder Management"
+    "CRM": [
+      "Customer Success Manager",
+      "Business Development Manager"
     ],
 
-    "HR Manager": [
-      "Communication",
-      "Leadership",
-      "Negotiation",
-      "Presentation",
-      "Problem Solving",
-      "Stakeholder Management"
+    "Presentation": [
+      "Business Analyst",
+      "Customer Success Manager",
+      "Business Development Manager",
+      "HR Manager"
     ],
 
-    "Data Engineer": [
-      "Python",
-      "SQL",
-      "Git",
-      "Problem Solving",
-      "Data Analysis"
+    "Problem Solving": [
+      "Data Analyst",
+      "Business Analyst",
+      "Customer Success Manager",
+      "Project Manager",
+      "Data Engineer",
+      "ML Engineer",
+      "HR Manager"
     ],
 
-    "ML Engineer": [
-      "Python",
-      "Machine Learning",
-      "Statistics",
-      "Git",
-      "Problem Solving",
-      "Data Analysis"
+    "Data Analysis": [
+      "Data Analyst",
+      "Business Analyst",
+      "Product Analyst",
+      "Data Engineer",
+      "ML Engineer"
+    ],
+
+    "Statistics": [
+      "Data Analyst",
+      "Product Analyst",
+      "ML Engineer"
+    ],
+
+    "Product Strategy": [
+      "Product Manager"
+    ],
+
+    "Product Analytics": [
+      "Product Manager",
+      "Product Analyst"
+    ],
+
+    "Agile": [
+      "Product Manager",
+      "Project Manager"
+    ],
+
+    "User Research": [
+      "Product Manager"
+    ],
+
+    "JavaScript": [
+      "Product Analyst",
+      "Product Manager"
+    ],
+
+    "HTML": [
+      "Product Manager"
+    ],
+
+    "CSS": [
+      "Product Manager"
+    ],
+
+    "Git": [
+      "Data Engineer",
+      "ML Engineer"
+    ],
+
+    "Machine Learning": [
+      "ML Engineer"
+    ],
+
+    "Data Visualization": [
+      "Data Analyst",
+      "Product Analyst",
+      "Business Analyst"
+    ],
+
+    "Project Management": [
+      "Project Manager"
+    ],
+
+    "Leadership": [
+      "Project Manager",
+      "HR Manager"
+    ],
+
+    "Market Research": [
+      "Business Development Manager",
+      "Product Manager"
+    ],
+
+    "Stakeholder Management": [
+      "Product Manager",
+      "Project Manager",
+      "Customer Success Manager",
+      "HR Manager"
     ]
   }
 }
