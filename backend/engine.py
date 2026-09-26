@@ -31,7 +31,6 @@ def normalize_text(text):
 
 
 def analyze_skill_gap(current_skills: list, target_role: str):
-    # Find the correct career even if user types different capitalization
     target_normalized = normalize_text(target_role)
 
     matched_role = None
@@ -41,7 +40,6 @@ def analyze_skill_gap(current_skills: list, target_role: str):
             matched_role = career
             break
 
-    # Support common variation
     if matched_role is None:
         aliases = {
             "product manager": "Product Management",
@@ -54,7 +52,6 @@ def analyze_skill_gap(current_skills: list, target_role: str):
 
     needed = CAREER_REQUIREMENTS.get(matched_role, [])
 
-    # Normalize user's skills
     normalized_user_skills = {
         normalize_text(skill): skill.strip()
         for skill in current_skills

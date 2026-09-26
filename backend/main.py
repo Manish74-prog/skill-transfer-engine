@@ -5,7 +5,6 @@ from typing import List
 import json
 import os
 
-# 1. IMPORT CHANDAN'S LOGIC
 from engine import analyze_skill_gap
 
 app = FastAPI()
@@ -18,30 +17,44 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 class UserInput(BaseModel):
     current_role: str
     target_role: str
     skills: List[str]
 
+
 @app.post("/api/analyze")
 def analyze(data: UserInput):
-    # RUN CHANDAN'S ENGINE
-    analysis = analyze_skill_gap(data.skills, data.target_role)
 
-    # LOAD INDIRA'S ROADMAP DATA
-    roadmap_path = os.path.join("..", "data", "career_graphs.json")
+    # Run Chandan's skill-matching engine
+    analysis = analyze_skill_gap(
+        data.skills,
+        data.target_role
+    )
+
+    # Load Indira's roadmap data
+    roadmap_path = os.path.join(
+        "..",
+        "data",
+        "career_graphs.json"
+    )
+
     roadmap_steps = []
-    
+
     if os.path.exists(roadmap_path):
         with open(roadmap_path, "r") as f:
             all_roadmaps = json.load(f)
-            key = f"{data.current_role}_to_{analysis['target_role']}"
-            roadmap_steps = all_roadmaps.get(key, [])
 
-    # RETURN THE COMBINED RESULT TO BHAVYA'S FRONTEND
+        # Use canonical target role from the engine
+        key = f"{data.current_role}_to_{analysis['target_role']}"
+
+        roadmap_steps = all_roadmaps.get(key, [])
+
+    # Return combined result to Bhavya's frontend
     return {
         "current_role": data.current_role,
-        "target_role": data.target_role,
-        "analysis": analysis,         # Chandan's work
-        "roadmap": roadmap_steps       # Indira's work
+        "target_role": analysis["target_role"],
+        "analysis": analysis,
+        "roadmap": roadmap_steps
     }
