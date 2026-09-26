@@ -35,7 +35,7 @@ def analyze(data: UserInput):
     if os.path.exists(roadmap_path):
         with open(roadmap_path, "r") as f:
             all_roadmaps = json.load(f)
-            key = f"{data.current_role}_to_{data.target_role}"
+            key = f"{data.current_role}_to_{analysis['target_role']}"
             roadmap_steps = all_roadmaps.get(key, [])
 
     # RETURN THE COMBINED RESULT TO BHAVYA'S FRONTEND
