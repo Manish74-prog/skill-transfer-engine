@@ -1,4 +1,4 @@
-# Data for Frontend (Bhavya)
+# Data for Frontend 
 
 ## 1. Skill Graph Relationships
 - **Communication** → Sales Executive, HR, Product Manager
