@@ -99,3 +99,16 @@ def simulate_career_pivot(payload: SimulateRequest):
         alternative_careers=result["alternatives"],
         roadmap=roadmap_data
     )
+
+# Endpoint 3: Dropdown List of Available Roles
+@app.get("/career-paths")
+def get_career_paths():
+    return {
+        "roles": [
+            "Sales Executive",
+            "Product Manager",
+            "Customer Success Manager",
+            "Business Analyst",
+            "Business Development Manager"
+        ]
+    }
