@@ -3,26 +3,74 @@
     {
       "step": 1,
       "title": "Learn",
+      "skill": "Product Strategy",
+      "action": "Learn how product teams define problems, users, value propositions, and product goals."
+    },
+    {
+      "step": 1,
+      "title": "Learn",
+      "skill": "Data Analytics",
+      "action": "Learn basic product metrics such as conversion, retention, churn, and user engagement."
+    },
+    {
+      "step": 1,
+      "title": "Learn",
       "skill": "Market Research",
-      "action": "Turn daily customer conversations into structured user interview insights."
+      "action": "Turn customer conversations and feedback into structured user and market insights."
+    },
+    {
+      "step": 2,
+      "title": "Practice",
+      "skill": "User Interviews",
+      "action": "Practice converting customer conversations into clear problems, needs, and user personas."
     },
     {
       "step": 2,
       "title": "Practice",
       "skill": "Product Analytics",
-      "action": "Analyze churn metrics and usage patterns using simple dashboard tools."
+      "action": "Analyze churn, conversion, and usage patterns using simple dashboard tools."
+    },
+    {
+      "step": 2,
+      "title": "Practice",
+      "skill": "Product Case Studies",
+      "action": "Pick an existing product and identify one user problem and three possible solutions."
     },
     {
       "step": 3,
       "title": "Build",
       "skill": "PRD Creation",
-      "action": "Write a 1-page Product Requirement Document solving a common customer objection."
+      "action": "Write a 1-page Product Requirement Document solving a common customer problem."
+    },
+    {
+      "step": 3,
+      "title": "Build",
+      "skill": "Product Case Study",
+      "action": "Create a case study explaining the problem, users, solution, metrics, and trade-offs."
+    },
+    {
+      "step": 3,
+      "title": "Build",
+      "skill": "Analytics Dashboard",
+      "action": "Build a simple dashboard showing product metrics and explain the insights you discovered."
     },
     {
       "step": 4,
       "title": "Apply",
       "skill": "APM Roles",
-      "action": "Target Associate Product Manager roles that prioritize customer empathy."
+      "action": "Target Associate Product Manager and entry-level Product Management opportunities."
+    },
+    {
+      "step": 4,
+      "title": "Apply",
+      "skill": "Networking",
+      "action": "Connect with product managers and ask about their transition paths and day-to-day work."
+    },
+    {
+      "step": 4,
+      "title": "Apply",
+      "skill": "Portfolio",
+      "action": "Showcase your PRD, product case study, and analytics project as evidence of your new skills."
     }
   ]
 }

@@ -16,8 +16,10 @@ function App() {
   // =========================================================
   // CALL FASTAPI BACKEND
   // =========================================================
-  const handleAnalyze = async () => {
-    if (!role || !skills || !target) {
+  const handleAnalyze = async (careerOverride = null) => {
+    const selectedTarget = careerOverride || target;
+
+    if (!role || !skills || !selectedTarget) {
       alert("Please fill in all three fields.");
       return;
     }
@@ -40,7 +42,7 @@ function App() {
           },
           body: JSON.stringify({
             current_role: role,
-            target_role: target,
+            target_role: selectedTarget,
             skills: skillList,
           }),
         }
@@ -55,6 +57,7 @@ function App() {
       console.log("Backend response:", data);
 
       setResults(data);
+      setTarget(selectedTarget);
       setShowResults(true);
       setActiveStep(1);
 
@@ -83,6 +86,7 @@ function App() {
     setActiveStep(1);
     setSelectedCareer("");
     setResults(null);
+    setTarget("");
 
     window.scrollTo({
       top: 0,
@@ -91,7 +95,7 @@ function App() {
   };
 
   // =========================================================
-  // ANALYSIS DATA
+  // BACKEND DATA
   // =========================================================
   const analysis = results?.analysis || {};
 
@@ -102,7 +106,7 @@ function App() {
     analysis.skill_gaps || [];
 
   // =========================================================
-  // GET ROADMAP ITEMS
+  // ROADMAP DATA
   // =========================================================
   const getRoadmapItems = (stepName) => {
     if (
@@ -112,36 +116,32 @@ function App() {
       return [];
     }
 
-    const filtered = results.roadmap.filter((item) => {
-      if (typeof item === "string") {
-        return false;
-      }
+    return results.roadmap
+      .filter((item) => {
+        if (typeof item === "string") {
+          return false;
+        }
 
-      return (
-        String(item?.title || "").toLowerCase() ===
-        stepName.toLowerCase()
-      );
-    });
-
-    return filtered.map((item) => ({
-      skill: item.skill || "",
-      action: item.action || "",
-    }));
+        return (
+          String(item?.title || "").toLowerCase() ===
+          stepName.toLowerCase()
+        );
+      })
+      .map((item) => ({
+        skill: item.skill || "",
+        action: item.action || "",
+      }));
   };
 
-  // =========================================================
-  // CAREER ROADMAP
-  // =========================================================
   const roadmapContent = {
     1: {
       title: "Learn",
       subtitle: "Build missing knowledge",
-
       items:
         getRoadmapItems("Learn").length > 0
           ? getRoadmapItems("Learn")
           : skillGaps.map((skill) => ({
-              skill: skill,
+              skill,
               action: `Learn the fundamentals of ${skill}.`,
             })),
     },
@@ -149,7 +149,6 @@ function App() {
     2: {
       title: "Practice",
       subtitle: "Apply your knowledge",
-
       items:
         getRoadmapItems("Practice").length > 0
           ? getRoadmapItems("Practice")
@@ -160,14 +159,14 @@ function App() {
                   "Practice solving real-world problems.",
               },
               {
-                skill: "Product analysis",
-                action:
-                  "Analyze existing products.",
-              },
-              {
                 skill: "Case studies",
                 action:
-                  "Study successful case studies.",
+                  "Analyze successful products and identify user problems.",
+              },
+              {
+                skill: "User research",
+                action:
+                  "Practice understanding customer needs.",
               },
             ],
     },
@@ -175,7 +174,6 @@ function App() {
     3: {
       title: "Build",
       subtitle: "Create proof of skill",
-
       items:
         getRoadmapItems("Build").length > 0
           ? getRoadmapItems("Build")
@@ -187,12 +185,12 @@ function App() {
               {
                 skill: "Case study",
                 action:
-                  "Create a case study showing your thinking.",
+                  "Create a case study showing your problem-solving process.",
               },
               {
                 skill: "Documentation",
                 action:
-                  "Document your work and decisions.",
+                  "Document your decisions, results, and learnings.",
               },
             ],
     },
@@ -200,7 +198,6 @@ function App() {
     4: {
       title: "Apply",
       subtitle: "Target real opportunities",
-
       items:
         getRoadmapItems("Apply").length > 0
           ? getRoadmapItems("Apply")
@@ -212,19 +209,19 @@ function App() {
               {
                 skill: "Networking",
                 action:
-                  "Connect with professionals in the field.",
+                  "Connect with professionals working in the field.",
               },
               {
                 skill: "Applications",
                 action:
-                  "Apply for relevant internships and roles.",
+                  "Apply for relevant internships and entry-level roles.",
               },
             ],
     },
   };
 
   // =========================================================
-  // WHAT-IF CAREER
+  // WHAT-IF CAREER SELECTION
   // =========================================================
   const handleCareerChange = (career) => {
     setSelectedCareer(career);
@@ -238,9 +235,7 @@ function App() {
     return (
       <div className="app">
 
-        {/* NAVBAR */}
         <nav className="navbar">
-
           <div className="logo">
             Skill<span>Transfer</span>
           </div>
@@ -250,12 +245,10 @@ function App() {
               How It Works
             </a>
           </div>
-
         </nav>
 
         <main>
 
-          {/* HERO */}
           <section className="hero">
 
             <p className="badge">
@@ -265,6 +258,7 @@ function App() {
             <h1>
               Don't start from zero.
               <br />
+
               <span>
                 Discover where your skills can take you.
               </span>
@@ -272,14 +266,14 @@ function App() {
 
             <p className="hero-text">
               Your current experience may already contain
-              the skills needed for your next career. Find
-              your transferable skills, discover career
-              paths, and get a roadmap to move forward.
+              the skills needed for your next career.
+              Find your transferable skills, discover
+              career paths, and get a roadmap to move
+              forward.
             </p>
 
           </section>
 
-          {/* PROFILE FORM */}
           <section className="profile-card">
 
             <h2>
@@ -290,7 +284,6 @@ function App() {
               Tell us where you are and where you want to go.
             </p>
 
-            {/* CURRENT ROLE */}
             <div className="form-group">
 
               <label>
@@ -308,7 +301,6 @@ function App() {
 
             </div>
 
-            {/* SKILLS */}
             <div className="form-group">
 
               <label>
@@ -326,7 +318,6 @@ function App() {
 
             </div>
 
-            {/* TARGET CAREER */}
             <div className="form-group">
 
               <label>
@@ -344,17 +335,15 @@ function App() {
 
             </div>
 
-            {/* ERROR */}
             {error && (
               <p className="error-message">
                 {error}
               </p>
             )}
 
-            {/* ANALYZE BUTTON */}
             <button
               className="primary-btn"
-              onClick={handleAnalyze}
+              onClick={() => handleAnalyze()}
               disabled={loading}
             >
               {loading
@@ -364,7 +353,6 @@ function App() {
 
           </section>
 
-          {/* HOW IT WORKS */}
           <section
             className="how-it-works"
             id="how-it-works"
@@ -389,8 +377,8 @@ function App() {
                 </h3>
 
                 <p>
-                  We identify the skills you already have
-                  from your current experience.
+                  We identify the skills you already
+                  have from your current experience.
                 </p>
 
               </div>
@@ -404,8 +392,8 @@ function App() {
                 </h3>
 
                 <p>
-                  Discover which existing skills can move
-                  with you into another career.
+                  Discover which existing skills can
+                  move with you into another career.
                 </p>
 
               </div>
@@ -419,8 +407,8 @@ function App() {
                 </h3>
 
                 <p>
-                  Get a step-by-step path from your current
-                  role to your target career.
+                  Get a step-by-step path from your
+                  current role to your target career.
                 </p>
 
               </div>
@@ -441,7 +429,6 @@ function App() {
   return (
     <div className="app">
 
-      {/* NAVBAR */}
       <nav className="navbar">
 
         <div className="logo">
@@ -459,7 +446,8 @@ function App() {
 
       <main className="results-page">
 
-        {/* RESULT HEADER */}
+        {/* HEADER */}
+
         <div className="result-header">
 
           <p className="badge">
@@ -472,16 +460,14 @@ function App() {
           </h1>
 
           <p>
-            You don't need to start from zero. Here's how
-            your existing experience can move you toward
-            your target career.
+            You don't need to start from zero.
+            Here's how your existing experience can
+            move you toward your target career.
           </p>
 
         </div>
 
-        {/* =================================================
-            MATCH SCORE
-        ================================================= */}
+        {/* MATCH */}
 
         <section className="result-card match-card">
 
@@ -507,13 +493,12 @@ function App() {
 
         </section>
 
-        {/* =================================================
-            SKILLS GRID
-        ================================================= */}
+        {/* SKILLS GRID */}
 
         <section className="grid">
 
           {/* EXISTING SKILLS */}
+
           <div className="result-card">
 
             <div className="card-icon">
@@ -545,7 +530,8 @@ function App() {
 
           </div>
 
-          {/* TRANSFERABLE SKILLS */}
+          {/* TRANSFERABLE */}
+
           <div className="result-card">
 
             <div className="card-icon">
@@ -583,16 +569,17 @@ function App() {
             ) : (
 
               <p>
-                No direct transferable skills were found
-                yet. Explore the skill gaps below to see
-                what you can build next.
+                No direct transferable skills were
+                found yet. Explore the skill gaps
+                below to see what you can build next.
               </p>
 
             )}
 
           </div>
 
-          {/* SKILL GAPS */}
+          {/* GAPS */}
+
           <div className="result-card">
 
             <div className="card-icon">
@@ -621,8 +608,8 @@ function App() {
               ) : (
 
                 <p>
-                  Your current skills cover the known
-                  requirements.
+                  Your current skills cover the
+                  known requirements.
                 </p>
 
               )}
@@ -633,9 +620,7 @@ function App() {
 
         </section>
 
-        {/* =================================================
-            CAREER GPS
-        ================================================= */}
+        {/* CAREER GPS */}
 
         <section
           className="gps"
@@ -653,13 +638,12 @@ function App() {
             </h2>
 
             <p>
-              We turn your skill gaps into a practical
-              journey.
+              We turn your skill gaps into a
+              practical journey.
             </p>
 
           </div>
 
-          {/* FOUR STAGES */}
           <div className="path">
 
             {[1, 2, 3, 4].map(
@@ -712,7 +696,6 @@ function App() {
 
           </div>
 
-          {/* ROADMAP DETAILS */}
           <div className="roadmap-details">
 
             <p className="badge">
@@ -762,9 +745,7 @@ function App() {
 
         </section>
 
-        {/* =================================================
-            WHAT IF SIMULATOR
-        ================================================= */}
+        {/* WHAT IF */}
 
         <section className="what-if">
 
@@ -837,7 +818,8 @@ function App() {
             <div className="selected-career">
 
               <p>
-                Exploring your transferable skills for{" "}
+                Exploring your transferable skills
+                for{" "}
                 <strong>
                   {selectedCareer}
                 </strong>.
@@ -845,7 +827,9 @@ function App() {
 
               <button
                 className="primary-btn"
-                onClick={handleAnalyze}
+                onClick={() =>
+                  handleAnalyze(selectedCareer)
+                }
                 disabled={loading}
               >
                 {loading
@@ -859,9 +843,7 @@ function App() {
 
         </section>
 
-        {/* =================================================
-            FINAL MESSAGE
-        ================================================= */}
+        {/* FINAL MESSAGE */}
 
         <section className="final-message">
 
@@ -870,12 +852,13 @@ function App() {
           </p>
 
           <h2>
-            Your previous experience is not something
-            you leave behind.
+            Your previous experience is not
+            something you leave behind.
           </h2>
 
           <p>
-            It becomes the foundation for where you go next.
+            It becomes the foundation for where
+            you go next.
           </p>
 
           <button
