@@ -1,4 +1,4 @@
-# CHANDAN'S LOGIC: Skill graph & gap matching engine
+# Skill graph & gap matching engine
 
 SKILL_GRAPH = {
     "Communication": ["Sales", "Customer Success", "Product Management"],

@@ -7,7 +7,7 @@ import os
 
 from engine import analyze_skill_gap
 
-app = FastAPI()
+app = FastAPI(title="Skill Transfer Engine API")
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,16 +24,22 @@ class UserInput(BaseModel):
     skills: List[str]
 
 
+@app.get("/")
+def home():
+    return {
+        "status": "online",
+        "message": "Skill Transfer Engine backend is active"
+    }
+
+
 @app.post("/api/analyze")
 def analyze(data: UserInput):
 
-    # Run Chandan's skill-matching engine
     analysis = analyze_skill_gap(
         data.skills,
         data.target_role
     )
 
-    # Load Indira's roadmap data
     roadmap_path = os.path.join(
         "..",
         "data",
@@ -46,12 +52,10 @@ def analyze(data: UserInput):
         with open(roadmap_path, "r") as f:
             all_roadmaps = json.load(f)
 
-        # Use canonical target role from the engine
         key = f"{data.current_role}_to_{analysis['target_role']}"
 
         roadmap_steps = all_roadmaps.get(key, [])
 
-    # Return combined result to Bhavya's frontend
     return {
         "current_role": data.current_role,
         "target_role": analysis["target_role"],
